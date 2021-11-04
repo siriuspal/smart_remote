@@ -73,39 +73,87 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Map commands = {
-    const Icon(Icons.power_settings_new).toString(): 'combopower',
-    const Icon(Icons.volume_off_rounded).toString(): 'yamamute',
-    const Icon(Icons.volume_down_rounded).toString(): 'yamavolm',
-    const Icon(Icons.volume_up_rounded).toString(): 'yamavolp',
-    const Icon(Icons.tv_off_rounded).toString(): 'lgtvpower',
-    const Icon(Icons.speaker_group).toString(): 'yamapower',
-    const Icon(Icons.fast_rewind_rounded).toString(): 'lgtvrewind',
-    const Icon(Icons.play_arrow_rounded).toString(): 'lgtvplay',
-    const Icon(Icons.pause_rounded).toString(): 'lgtvpause',
-    const Icon(Icons.stop_rounded).toString(): 'lgtvstop',
-    const Icon(Icons.fast_forward_rounded).toString(): 'lgtvforward',
-    const Icon(MaterialCommunityIcons.emby).toString(): 'comboemby',
-    const Icon(MaterialCommunityIcons.netflix).toString(): 'combonetflix',
-    const Icon(MaterialCommunityIcons.amazon).toString(): 'comboamazon',
-    const Icon(MaterialCommunityIcons.microsoft_xbox).toString(): 'comboxbox',
-    const Icon(FontAwesome5Brands.chromecast).toString(): 'combochromecast',
-    const Icon(Icons.settings_input_hdmi_rounded).toString(): 'lgtvinputs',
-    const Icon(Icons.keyboard_arrow_up_rounded).toString(): 'lgtvuparrow',
-    const Icon(Icons.settings_rounded).toString(): 'lgtvsett',
-    const Icon(Icons.keyboard_arrow_left_rounded).toString(): 'lgtvleftarrow',
-    const Icon(Icons.check_circle).toString(): 'lgtvok',
-    const Icon(Icons.keyboard_arrow_right_rounded).toString(): 'lgtvrightarrow',
-    const Icon(Icons.undo).toString(): 'lgtvback',
-    const Icon(Icons.keyboard_arrow_down_rounded).toString(): 'lgtvdownarrow',
-    const Icon(Icons.horizontal_rule).toString(): 'yamastraight',
-    const Icon(Icons.graphic_eq).toString(): 'yamaprogright',
-    const Icon(Icons.auto_graph).toString(): 'yamaenhancer',
-    const Icon(MaterialCommunityIcons.music_clef_bass).toString(): 'yamabass',
-    const Icon(Icons.vpn_lock).toString(): 'openvpn/restart',
-    const Icon(Icons.restart_alt).toString(): 'emby/restart',
-    const Icon(Icons.tune_rounded).toString(): 'lgtvezadj',
-    const Icon(Icons.build_rounded).toString(): 'lgtvinstart',
+  static Map commands = {
+    'power_settings_new_rounded': [
+      const Icon(Icons.power_settings_new_rounded),
+      'combopower'
+    ],
+    'volume_off_rounded': [const Icon(Icons.volume_off_rounded), 'yamamute'],
+    'volume_down_rounded': [const Icon(Icons.volume_down_rounded), 'yamavolm'],
+    'volume_up_rounded': [const Icon(Icons.volume_up_rounded), 'yamavolp'],
+    'tv_off_rounded': [const Icon(Icons.tv_off_rounded), 'lgtvpower'],
+    'speaker_group_rounded': [
+      const Icon(Icons.speaker_group_rounded),
+      'yamapower'
+    ],
+    'fast_rewind_rounded': [
+      const Icon(Icons.fast_rewind_rounded),
+      'lgtvrewind'
+    ],
+    'play_arrow_rounded': [const Icon(Icons.play_arrow_rounded), 'lgtvplay'],
+    'pause_rounded': [const Icon(Icons.pause_rounded), 'lgtvpause'],
+    'stop_rounded': [const Icon(Icons.stop_rounded), 'lgtvstop'],
+    'fast_forward_rounded': [
+      const Icon(Icons.fast_forward_rounded),
+      'lgtvforward'
+    ],
+    'emby': [const Icon(MaterialCommunityIcons.emby), 'comboemby'],
+    'netflix': [const Icon(MaterialCommunityIcons.netflix), 'combonetflix'],
+    'amazon': [const Icon(MaterialCommunityIcons.amazon), 'comboamazon'],
+    'microsoft_xbox': [
+      const Icon(MaterialCommunityIcons.microsoft_xbox),
+      'comboxbox'
+    ],
+    'chromecast': [
+      const Icon(FontAwesome5Brands.chromecast),
+      'combochromecast'
+    ],
+    'settings_input_hdmi_rounded': [
+      const Icon(Icons.settings_input_hdmi_rounded),
+      'lgtvinputs'
+    ],
+    'keyboard_arrow_up_rounded': [
+      const Icon(Icons.keyboard_arrow_up_rounded),
+      'lgtvuparrow'
+    ],
+    'settings_rounded': [const Icon(Icons.settings_rounded), 'lgtvsett'],
+    'keyboard_arrow_left_rounded': [
+      const Icon(Icons.keyboard_arrow_left_rounded),
+      'lgtvleftarrow'
+    ],
+    'check_circle_rounded': [const Icon(Icons.check_circle_rounded), 'lgtvok'],
+    'keyboard_arrow_right_rounded': [
+      const Icon(Icons.keyboard_arrow_right_rounded),
+      'lgtvrightarrow'
+    ],
+    'undo_rounded': [const Icon(Icons.undo_rounded), 'lgtvback'],
+    'keyboard_arrow_down_rounded': [
+      const Icon(Icons.keyboard_arrow_down_rounded),
+      'lgtvdownarrow'
+    ],
+    'horizontal_rule_rounded': [
+      const Icon(Icons.horizontal_rule_rounded),
+      'yamastraight'
+    ],
+    'graphic_eq_rounded': [
+      const Icon(Icons.graphic_eq_rounded),
+      'yamaprogright'
+    ],
+    'auto_graph_rounded': [
+      const Icon(Icons.auto_graph_rounded),
+      'yamaenhancer'
+    ],
+    'music_clef_bass': [
+      const Icon(MaterialCommunityIcons.music_clef_bass),
+      'yamabass'
+    ],
+    'vpn_lock_rounded': [const Icon(Icons.vpn_lock_rounded), 'openvpn/restart'],
+    'restart_alt_rounded': [
+      const Icon(Icons.restart_alt_rounded),
+      'emby/restart'
+    ],
+    'tune_rounded': [const Icon(Icons.tune_rounded), 'lgtvezadj'],
+    'build_rounded': [const Icon(Icons.build_rounded), 'lgtvinstart'],
   };
 
   List<Widget> spacers(int count) {
@@ -125,10 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Widget iconButton(Icon icon, {Color? color, String? tooltip}) {
+  Widget iconButton(String icon, {Color? color, String? tooltip}) {
     return Container(
       child: IconButton(
-        icon: icon,
+        icon: commands[icon][0],
         padding: const EdgeInsets.all(0),
         iconSize: 36.0,
         color: color ?? Theme.of(context).primaryColorLight,
@@ -137,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
         splashColor: Colors.black45,
         onPressed: () {
           HapticFeedback.lightImpact();
-          sendMqttCommand(commands[icon.toString()]);
+          sendMqttCommand(commands[icon][1]);
         },
       ),
       decoration: const BoxDecoration(
@@ -169,68 +217,61 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisCount: 7,
           children: [
             ...spacers(1),
-            iconButton(const Icon(Icons.power_settings_new),
+            iconButton('power_settings_new_rounded',
                 color: Colors.redAccent, tooltip: 'Power All'),
             ...spacers(0),
-            iconButton(const Icon(Icons.volume_off_rounded)),
+            iconButton('volume_off_rounded'),
             ...spacers(2),
-            iconButton(const Icon(Icons.tv_off_rounded),
+            iconButton('tv_off_rounded',
                 color: Colors.redAccent, tooltip: 'Power TV'),
-            iconButton(const Icon(Icons.speaker_group),
+            iconButton('speaker_group_rounded',
                 color: Colors.redAccent, tooltip: 'Power Yamaha'),
             ...spacers(0),
-            iconButton(const Icon(Icons.volume_down_rounded)),
-            iconButton(const Icon(Icons.volume_up_rounded)),
+            iconButton('volume_down_rounded'),
+            iconButton('volume_up_rounded'),
             ...spacers(8),
-            iconButton(const Icon(Icons.fast_rewind_rounded)),
-            iconButton(const Icon(Icons.play_arrow_rounded)),
-            iconButton(const Icon(Icons.pause_rounded)),
-            iconButton(const Icon(Icons.stop_rounded)),
-            iconButton(const Icon(Icons.fast_forward_rounded)),
+            iconButton('fast_rewind_rounded'),
+            iconButton('play_arrow_rounded'),
+            iconButton('pause_rounded'),
+            iconButton('stop_rounded'),
+            iconButton('fast_forward_rounded'),
             ...spacers(6),
             ...spacers(1),
-            iconButton(const Icon(MaterialCommunityIcons.emby),
-                color: Colors.green),
-            iconButton(const Icon(MaterialCommunityIcons.netflix),
-                color: Colors.red),
-            iconButton(const Icon(MaterialCommunityIcons.amazon),
-                color: Colors.cyan),
-            iconButton(const Icon(MaterialCommunityIcons.microsoft_xbox),
-                color: Colors.grey[200]),
-            iconButton(const Icon(FontAwesome5Brands.chromecast),
-                color: Colors.grey[100]),
+            iconButton('emby', color: Colors.green),
+            iconButton('netflix', color: Colors.red),
+            iconButton('amazon', color: Colors.cyan),
+            iconButton('microsoft_xbox', color: Colors.grey[200]),
+            iconButton('chromecast', color: Colors.grey[100]),
             ...spacers(8),
-            iconButton(const Icon(Icons.settings_input_hdmi_rounded),
-                tooltip: 'Video Input'),
+            iconButton('settings_input_hdmi_rounded', tooltip: 'Video Input'),
             ...spacers(0),
-            iconButton(const Icon(Icons.keyboard_arrow_up_rounded)),
+            iconButton('keyboard_arrow_up_rounded'),
             ...spacers(0),
-            iconButton(const Icon(Icons.settings_rounded), tooltip: 'Settings'),
+            iconButton('settings_rounded', tooltip: 'Settings'),
             ...spacers(2),
-            iconButton(const Icon(Icons.keyboard_arrow_left_rounded)),
-            iconButton(const Icon(Icons.check_circle), tooltip: 'Okay'),
-            iconButton(const Icon(Icons.keyboard_arrow_right_rounded)),
+            iconButton('keyboard_arrow_left_rounded'),
+            iconButton('check_circle_rounded', tooltip: 'Okay'),
+            iconButton('keyboard_arrow_right_rounded'),
             ...spacers(2),
-            iconButton(const Icon(Icons.undo), tooltip: 'Back'),
+            iconButton('undo_rounded', tooltip: 'Back'),
             ...spacers(0),
-            iconButton(const Icon(Icons.keyboard_arrow_down_rounded)),
+            iconButton('keyboard_arrow_down_rounded'),
             ...spacers(9),
-            iconButton(const Icon(Icons.horizontal_rule), tooltip: 'Straight'),
-            iconButton(const Icon(Icons.auto_graph), tooltip: 'Enhancer'),
-            iconButton(const Icon(Icons.graphic_eq), tooltip: 'Audio Program'),
-            iconButton(const Icon(MaterialCommunityIcons.music_clef_bass),
-                tooltip: 'Bass'),
+            iconButton('horizontal_rule_rounded', tooltip: 'Straight'),
+            iconButton('auto_graph_rounded', tooltip: 'Enhancer'),
+            iconButton('graphic_eq_rounded', tooltip: 'Audio Program'),
+            iconButton('music_clef_bass', tooltip: 'Bass'),
             ...spacers(0),
-            iconButton(const Icon(Icons.vpn_lock),
+            iconButton('vpn_lock_rounded',
                 color: Colors.amberAccent, tooltip: 'Restart VPN'),
-            iconButton(const Icon(Icons.restart_alt),
+            iconButton('restart_alt_rounded',
                 color: Colors.green, tooltip: 'Restart Emby'),
             ...spacers(22),
-            iconButton(const Icon(Icons.tune_rounded),
+            iconButton('tune_rounded',
                 color: Colors.grey[500], tooltip: 'Ez Adj Menu'),
             ...spacers(0),
-            iconButton(const Icon(Icons.build_rounded),
-                color: Colors.grey[500], tooltip: 'Inset Menu'),
+            iconButton('build_rounded',
+                color: Colors.grey[500], tooltip: 'Instart Menu'),
           ],
         ),
       ),

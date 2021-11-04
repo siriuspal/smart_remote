@@ -67,11 +67,13 @@ android {
         release {
             profile {
         matchingFallbacks = ['debug', 'release']
+        shrinkResources false
+        minifyEnabled false
+        useProguard false
         }
         shrinkResources false
         minifyEnabled false
         useProguard false
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         signingConfig signingConfigs.release
         }
     }
