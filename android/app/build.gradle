@@ -67,13 +67,10 @@ android {
         release {
             profile {
         matchingFallbacks = ['debug', 'release']
-        shrinkResources false
-        minifyEnabled false
+        shrinkResources true
+        minifyEnabled true
         useProguard false
         }
-        shrinkResources false
-        minifyEnabled false
-        useProguard false
         signingConfig signingConfigs.release
         }
     }
